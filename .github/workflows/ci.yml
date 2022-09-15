@@ -30,3 +30,6 @@ jobs:
           default_prerelease_bump: prepatch
           release_branches: master,develop
           tag_prefix: ${{ steps.branch-name.outputs.current_branch }}-
+          dry_run: true
+      - run: |
+          echo "${{ steps.tag_version.outputs.new_tag }}"
