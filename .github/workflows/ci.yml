@@ -16,9 +16,16 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v6
       - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          release_branches: master,develop
-          tag_prefix: ${{ steps.branch-name.outputs.current_branch }}-
+        uses: anothrNick/github-tag-action@1.40.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: false
+          TAG_CONTEXT: branch
+      # - name: Bump version and push tag
+      #   id: tag_version
+      #   uses: mathieudutour/github-tag-action@v6.0
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     default_prerelease_bump: prepatch
+      # release_branches: master,develop
+      # tag_prefix: ${{ steps.branch-name.outputs.current_branch }}-
