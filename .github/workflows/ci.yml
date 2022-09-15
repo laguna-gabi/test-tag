@@ -31,5 +31,9 @@ jobs:
           release_branches: master,develop
           # tag_prefix: ${{ steps.branch-name.outputs.current_branch }}-
           dry_run: true
-      - run: |
-          echo "${{ steps.tag_version.outputs.new_tag }}"
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }} develop
+          body: ${{ steps.tag_version.outputs.changelog }}
